@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { recommendSolo } from "../lib/recommend";
 import places from "../../public/places.json";
+import { enrich } from "../data/enrichments";
+import ResultsMap from "./ResultsMap";
 
 export default function Results({ recommendations, answers, onRetry }) {
   const [excluded, setExcluded] = useState([]);
   const [picks, setPicks] = useState(recommendations);
+  const [highlightedId, setHighlightedId] = useState(null);
 
   const visible = picks.filter((v) => !excluded.includes(v.id));
-  const winner = visible[0];
-  const runnersUp = visible.slice(1, 4);
+  const enrichedVisible = useMemo(
+    () => visible.map((v) => enrich(v)),
+    [visible]
+  );
+  const winner = enrichedVisible[0];
+  const runnersUp = enrichedVisible.slice(1, 4);
+  const mapVenues = enrichedVisible.slice(0, 5); // top 5 pinned
 
   const showDifferent = () => {
-    // Re-rank, excluding the venues currently shown
     const idsToExclude = visible.map((v) => v.id);
     const fresh = recommendSolo(answers, places, 5).filter(
       (v) => !idsToExclude.includes(v.id)
@@ -19,8 +26,8 @@ export default function Results({ recommendations, answers, onRetry }) {
     if (fresh.length > 0) {
       setPicks(fresh);
       setExcluded([]);
+      setHighlightedId(null);
     } else {
-      // No more matches in the dataset — show empty state
       setPicks([]);
     }
   };
@@ -43,7 +50,11 @@ export default function Results({ recommendations, answers, onRetry }) {
 
   return (
     <div className="space-y-5">
-      <WinnerCard venue={winner} />
+      <WinnerCard
+        venue={winner}
+        onHover={() => setHighlightedId(winner.id)}
+        onLeave={() => setHighlightedId(null)}
+      />
 
       {runnersUp.length > 0 && (
         <div>
@@ -52,11 +63,28 @@ export default function Results({ recommendations, answers, onRetry }) {
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
             {runnersUp.map((v, i) => (
-              <RunnerUpCard key={v.id} venue={v} rank={i + 2} />
+              <RunnerUpCard
+                key={v.id}
+                venue={v}
+                rank={i + 2}
+                onHover={() => setHighlightedId(v.id)}
+                onLeave={() => setHighlightedId(null)}
+              />
             ))}
           </div>
         </div>
       )}
+
+      <div>
+        <p className="text-xs uppercase tracking-widest opacity-60 mb-2 px-1">
+          On the map
+        </p>
+        <ResultsMap
+          venues={mapVenues}
+          highlightedId={highlightedId}
+          onPinClick={(id) => setHighlightedId(id)}
+        />
+      </div>
 
       <div className="bg-white border rounded-2xl p-5 space-y-3">
         <h3 className="font-semibold">Not feeling it?</h3>
@@ -79,10 +107,14 @@ export default function Results({ recommendations, answers, onRetry }) {
   );
 }
 
-function WinnerCard({ venue }) {
+function WinnerCard({ venue, onHover, onLeave }) {
   const reason = buildReason(venue);
   return (
-    <div className="bg-white border rounded-2xl p-6">
+    <div
+      className="bg-white border rounded-2xl p-6"
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+    >
       <div className="flex items-start justify-between mb-2">
         <span className="text-xs uppercase tracking-widest font-bold opacity-70">
           ✨ The pick
@@ -94,26 +126,26 @@ function WinnerCard({ venue }) {
       </p>
       <p className="mb-3">{venue.blurb}</p>
       {reason && (
-        <p className="text-sm font-medium mb-3" style={{ color: "var(--accent-ink, #8a3315)" }}>
+        <p
+          className="text-sm font-medium mb-3"
+          style={{ color: "var(--accent-ink, #8a3315)" }}
+        >
           {reason}
         </p>
       )}
       <SourceChips sources={venue.sources} />
-      <a
-        href={venue.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block mt-4 text-sm underline"
-      >
-        Visit site →
-      </a>
+      <ActionRow venue={venue} primary />
     </div>
   );
 }
 
-function RunnerUpCard({ venue, rank }) {
+function RunnerUpCard({ venue, rank, onHover, onLeave }) {
   return (
-    <div className="bg-white border rounded-2xl p-4">
+    <div
+      className="bg-white border rounded-2xl p-4"
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+    >
       <div className="flex items-baseline justify-between mb-1">
         <h3 className="font-semibold text-base">
           #{rank} · {venue.name}
@@ -124,14 +156,82 @@ function RunnerUpCard({ venue, rank }) {
       </p>
       <p className="text-sm mb-2">{venue.blurb}</p>
       <SourceChips sources={venue.sources} small />
-      <a
-        href={venue.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block mt-2 text-xs underline"
-      >
-        Visit site →
-      </a>
+      <ActionRow venue={venue} />
+    </div>
+  );
+}
+
+function ActionRow({ venue, primary = false }) {
+  const r = venue.reservation;
+  const directionsUrl = buildDirectionsUrl(venue);
+
+  const labels = {
+    resy: "Reserve on Resy",
+    opentable: "Reserve on OpenTable",
+    tock: "Reserve on Tock",
+    tickets: "Get tickets",
+    yelp: "Check on Yelp",
+  };
+
+  const colors = {
+    resy: "#e60023",
+    opentable: "#da3743",
+    tock: "#1f2937",
+    tickets: "#0f766e",
+    yelp: "#af0606",
+  };
+
+  return (
+    <div
+      className={`flex flex-wrap items-center gap-2 ${
+        primary ? "mt-4" : "mt-3"
+      }`}
+    >
+      {r && r.url ? (
+        <a
+          href={r.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`inline-flex items-center gap-1 rounded-xl px-3 py-2 font-medium text-white ${
+            primary ? "text-sm" : "text-xs px-2.5 py-1.5"
+          }`}
+          style={{ background: colors[r.platform] || "#1c1917" }}
+        >
+          {labels[r.platform] || "Book / Tickets"}
+        </a>
+      ) : (
+        <span
+          className={`inline-flex items-center rounded-xl border px-3 py-1.5 ${
+            primary ? "text-sm" : "text-xs"
+          } opacity-70`}
+        >
+          Walk-ins only
+        </span>
+      )}
+      {directionsUrl && (
+        <a
+          href={directionsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`inline-flex items-center rounded-xl border px-3 py-1.5 hover:bg-stone-900 hover:text-white transition ${
+            primary ? "text-sm" : "text-xs"
+          }`}
+        >
+          Directions
+        </a>
+      )}
+      {venue.url && (
+        <a
+          href={venue.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`underline opacity-70 hover:opacity-100 ${
+            primary ? "text-sm" : "text-xs"
+          }`}
+        >
+          Visit site →
+        </a>
+      )}
     </div>
   );
 }
@@ -188,4 +288,16 @@ function buildReason(venue) {
   return parts.join(" · ");
 }
 
-/* END OF FILE — last line above is "}" closing buildReason */
+function buildDirectionsUrl(venue) {
+  if (venue.coords && venue.coords.length === 2) {
+    const [lat, lng] = venue.coords;
+    return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+  }
+  if (venue.name) {
+    const q = encodeURIComponent(`${venue.name} ${venue.neighborhood || "Atlanta"}`);
+    return `https://www.google.com/maps/search/?api=1&query=${q}`;
+  }
+  return null;
+}
+
+/* END OF FILE — last line above is "}" closing buildDirectionsUrl */
