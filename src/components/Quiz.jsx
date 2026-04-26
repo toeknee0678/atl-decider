@@ -4,12 +4,11 @@ import { questions } from "../data/questions";
 export default function Quiz({ onComplete }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [chosen, setChosen] = useState(null); // visual flash on the picked option
+  const [chosen, setChosen] = useState(null);
   const [transitioning, setTransitioning] = useState(false);
   const containerRef = useRef(null);
   const q = questions[step];
 
-  // Smooth scroll to top of quiz card on each new question
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -25,13 +24,12 @@ export default function Quiz({ onComplete }) {
   };
 
   const choose = (value) => {
-    if (transitioning) return; // prevent double-taps during transition
+    if (transitioning) return;
     haptic();
     setChosen(value);
     const next = { ...answers, [q.key]: value };
 
     setTransitioning(true);
-    // Brief delay so the user sees their tap acknowledged before we swap
     setTimeout(() => {
       setAnswers(next);
       setChosen(null);
@@ -113,4 +111,4 @@ export default function Quiz({ onComplete }) {
   );
 }
 
-/* END OF FILE — last line above is "}" closing the Quiz component */
+/* END OF FILE — last line above is "}" closing Quiz */
