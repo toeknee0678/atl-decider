@@ -8,9 +8,9 @@ import { rankForUser } from "./recommend.js";
  * @returns {{ results: Array, consensus: object }}
  */
 export function aggregateGroup(participants, places) {
-  const scoreMap = new Map();        // venueId -> total points
-  const breakdown = new Map();       // venueId -> [{ userName, rank, points }]
-  const eligibleByUser = new Map();  // userId -> Set of venueIds that passed their filters
+  const scoreMap = new Map();
+  const breakdown = new Map();
+  const eligibleByUser = new Map();
 
   for (const user of participants) {
     const ranked = rankForUser(user.answers, places);
@@ -29,4 +29,35 @@ export function aggregateGroup(participants, places) {
     });
   }
 
-  // A venue must satisfy EVERY user's hard
+  const passesAllFilters = (venueId) =>
+    [...eligibleByUser.values()].every((set) => set.has(venueId));
+
+  const results = places
+    .filter((p) => passesAllFilters(p.id))
+    .map((p) => ({
+      venue: p,
+      groupScore: scoreMap.get(p.id) || 0,
+      breakdown: breakdown.get(p.id) || [],
+    }))
+    .sort((a, b) => b.groupScore - a.groupScore)
+    .slice(0, 5);
+
+  const consensus = computeConsensus(participants);
+  return { results, consensus };
+}
+
+function computeConsensus(participants) {
+  const keys = ["type", "price", "area", "energy", "group"];
+  const out = {};
+  for (const key of keys) {
+    const counts = {};
+    for (const u of participants) {
+      const v = u.answers?.[key];
+      if (v === undefined) continue;
+      counts[v] = (counts[v] || 0) + (u.weight ?? 1);
+    }
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    out[key] = { winner: sorted[0]?.[0], distribution: counts };
+  }
+  return out;
+}
