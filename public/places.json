@@ -1,250 +1,586 @@
-[
-  {
-    "id": "kimball-house",
-    "name": "Kimball House",
-    "neighborhood": "Decatur",
-    "area": "decatur-east",
-    "type": ["eat"],
-    "price": 3,
-    "energy": ["lively", "bignight"],
-    "groups": ["date", "friends"],
-    "tags": ["seafood", "cocktails", "oysters"],
-    "blurb": "Oysters and craft cocktails in a restored train depot.",
-    "url": "https://kimball-house.com",
-    "sources": [
-      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
-      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
-    ]
-  },
-  {
-    "id": "ponce-city-market",
-    "name": "Ponce City Market",
+{
+    "id": "staplehouse",
+    "name": "Staplehouse",
     "neighborhood": "Old Fourth Ward",
-    "area": "westside-beltline",
-    "type": ["eat", "do"],
-    "price": 2,
-    "energy": ["lively", "active"],
-    "groups": ["friends", "family", "tourists"],
-    "tags": ["food-hall", "beltline", "rooftop"],
-    "blurb": "Food hall plus rooftop games right on the BeltLine.",
-    "url": "https://poncecitymarket.com",
-    "sources": [
-      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
-      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
-      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
-    ]
-  },
-  {
-    "id": "the-iberian-pig",
-    "name": "The Iberian Pig",
-    "neighborhood": "Buckhead",
-    "area": "buckhead",
-    "type": ["eat"],
-    "price": 3,
-    "energy": ["lively"],
-    "groups": ["date", "friends"],
-    "tags": ["spanish", "tapas", "wine"],
-    "blurb": "Spanish tapas and an extensive wine list in a moody dining room.",
-    "url": "https://theiberianpigatl.com",
-    "sources": [
-      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
-    ]
-  },
-  {
-    "id": "fox-bros-bbq",
-    "name": "Fox Bros. Bar-B-Q",
-    "neighborhood": "Candler Park",
-    "area": "decatur-east",
-    "type": ["eat"],
-    "price": 2,
-    "energy": ["chill", "lively"],
-    "groups": ["friends", "family", "tourists"],
-    "tags": ["bbq", "casual", "atl-classic"],
-    "blurb": "Texas-style BBQ that's an Atlanta institution.",
-    "url": "https://foxbrosbbq.com",
-    "sources": [
-      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
-      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
-    ]
-  },
-  {
-    "id": "miller-union",
-    "name": "Miller Union",
-    "neighborhood": "Westside",
-    "area": "westside-beltline",
-    "type": ["eat"],
-    "price": 4,
-    "energy": ["bignight"],
-    "groups": ["date", "tourists"],
-    "tags": ["southern", "farm-to-table", "tasting"],
-    "blurb": "James Beard-winning Southern cuisine in a refined Westside space.",
-    "url": "https://millerunion.com",
-    "sources": [
-      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
-      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
-      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
-    ]
-  },
-  {
-    "id": "the-varsity",
-    "name": "The Varsity",
-    "neighborhood": "Midtown",
-    "area": "midtown",
-    "type": ["eat"],
-    "price": 1,
-    "energy": ["chill"],
-    "groups": ["family", "tourists", "friends"],
-    "tags": ["burgers", "atl-classic", "fast"],
-    "blurb": "World's largest drive-in. A required ATL stop.",
-    "url": "https://thevarsity.com",
-    "sources": [
-      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
-    ]
-  },
-  {
-    "id": "atlanta-beltline-eastside",
-    "name": "Atlanta BeltLine - Eastside Trail",
-    "neighborhood": "Old Fourth Ward to Inman Park",
-    "area": "westside-beltline",
-    "type": ["do"],
-    "price": 1,
-    "energy": ["active", "lively"],
-    "groups": ["friends", "date", "family", "tourists"],
-    "tags": ["walking", "outdoors", "art", "beltline"],
-    "blurb": "Walk or bike past murals, breweries, and food halls on the city's signature trail.",
-    "url": "https://beltline.org",
-    "sources": [
-      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
-    ]
-  },
-  {
-    "id": "piedmont-park",
-    "name": "Piedmont Park",
-    "neighborhood": "Midtown",
-    "area": "midtown",
-    "type": ["do"],
-    "price": 1,
-    "energy": ["chill", "active"],
-    "groups": ["family", "friends", "date"],
-    "tags": ["park", "outdoors", "skyline"],
-    "blurb": "ATL's central park - picnics, paddle boats on Lake Clara Meer, skyline views.",
-    "url": "https://piedmontpark.org",
-    "sources": [
-      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
-    ]
-  },
-  {
-    "id": "high-museum",
-    "name": "High Museum of Art",
-    "neighborhood": "Midtown",
-    "area": "midtown",
-    "type": ["do"],
-    "price": 2,
-    "energy": ["chill"],
-    "groups": ["date", "family", "tourists"],
-    "tags": ["art", "indoors", "culture"],
-    "blurb": "The Southeast's leading art museum with strong folk and contemporary collections.",
-    "url": "https://high.org",
-    "sources": [
-      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
-    ]
-  },
-  {
-    "id": "skyline-park-pcm",
-    "name": "Skyline Park at Ponce City Market",
-    "neighborhood": "Old Fourth Ward",
-    "area": "westside-beltline",
-    "type": ["do"],
-    "price": 2,
-    "energy": ["lively", "bignight"],
-    "groups": ["friends", "date", "tourists"],
-    "tags": ["rooftop", "games", "skyline", "drinks"],
-    "blurb": "Mini golf, skee-ball, and skyline views on top of PCM.",
-    "url": "https://poncecitymarket.com/skyline-park",
-    "sources": [
-      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
-    ]
-  },
-  {
-    "id": "spondivits",
-    "name": "Spondivits",
-    "neighborhood": "Hapeville",
-    "area": "any",
-    "type": ["eat"],
-    "price": 2,
-    "energy": ["lively", "chill"],
-    "groups": ["friends", "family"],
-    "tags": ["seafood", "casual", "atl-classic"],
-    "blurb": "Beachy seafood dive that's been a Southside staple for decades.",
-    "url": "https://spondivits.com",
-    "sources": [
-      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
-    ]
-  },
-  {
-    "id": "avalon-alpharetta",
-    "name": "Avalon",
-    "neighborhood": "Alpharetta",
-    "area": "otp-north",
-    "type": ["eat", "do"],
-    "price": 3,
-    "energy": ["lively", "chill"],
-    "groups": ["family", "friends", "date"],
-    "tags": ["mixed-use", "shopping", "restaurants", "events"],
-    "blurb": "Walkable OTP destination with restaurants, shops, and seasonal events.",
-    "url": "https://experienceavalon.com",
-    "sources": [
-      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
-    ]
-  },
-  {
-    "id": "bacchanalia",
-    "name": "Bacchanalia",
-    "neighborhood": "Westside",
     "area": "westside-beltline",
     "type": ["eat"],
     "price": 4,
     "energy": ["bignight"],
     "groups": ["date", "tourists"],
     "tags": ["fine-dining", "tasting-menu", "special-occasion"],
-    "blurb": "Atlanta's longest-running fine dining destination - tasting menu only.",
-    "url": "https://starprovisions.com/bacchanalia",
+    "blurb": "Tasting menu in an intimate Old Fourth Ward space — a James Beard regular.",
+    "url": "https://staplehouse.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "cooks-and-soldiers",
+    "name": "Cooks & Soldiers",
+    "neighborhood": "Westside",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 3,
+    "energy": ["lively", "date"],
+    "groups": ["date", "friends"],
+    "tags": ["spanish", "basque", "tapas", "wine"],
+    "blurb": "Basque-inspired pintxos and shareable plates with a great drinks list.",
+    "url": "https://cooksandsoldiers.com",
+    "sources": [
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
+    ]
+  },
+  {
+    "id": "the-optimist",
+    "name": "The Optimist",
+    "neighborhood": "Westside",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 3,
+    "energy": ["lively", "bignight"],
+    "groups": ["date", "friends", "tourists"],
+    "tags": ["seafood", "raw-bar", "oysters"],
+    "blurb": "Ford Fry's seafood hall with a knockout raw bar and lively atmosphere.",
+    "url": "https://theoptimistrestaurant.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "marcel",
+    "name": "Marcel",
+    "neighborhood": "Westside",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 4,
+    "energy": ["bignight", "date"],
+    "groups": ["date"],
+    "tags": ["steakhouse", "french", "old-school"],
+    "blurb": "Ford Fry's old-school French steakhouse — leather banquettes and proper martinis.",
+    "url": "https://marcelatl.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "little-bear",
+    "name": "Little Bear",
+    "neighborhood": "Summerhill",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 3,
+    "energy": ["chill", "lively"],
+    "groups": ["date", "friends"],
+    "tags": ["seasonal", "small-plates", "natural-wine"],
+    "blurb": "Inventive seasonal cooking from chef Jarrett Stieber in tiny Summerhill space.",
+    "url": "https://littlebearatl.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "lazy-betty",
+    "name": "Lazy Betty",
+    "neighborhood": "Candler Park",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 4,
+    "energy": ["bignight", "date"],
+    "groups": ["date"],
+    "tags": ["tasting-menu", "modern", "michelin"],
+    "blurb": "Modern tasting menu with serious technique and warm hospitality.",
+    "url": "https://lazybettyatl.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "atlas",
+    "name": "Atlas",
+    "neighborhood": "Buckhead",
+    "area": "buckhead",
+    "type": ["eat"],
+    "price": 4,
+    "energy": ["bignight", "date"],
+    "groups": ["date", "tourists"],
+    "tags": ["new-american", "art", "luxury"],
+    "blurb": "Hotel restaurant inside the St. Regis with serious art on the walls.",
+    "url": "https://atlasrestaurant.com",
+    "sources": [
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "umi",
+    "name": "Umi",
+    "neighborhood": "Buckhead",
+    "area": "buckhead",
+    "type": ["eat"],
+    "price": 4,
+    "energy": ["bignight", "lively"],
+    "groups": ["date", "friends"],
+    "tags": ["sushi", "japanese", "scene"],
+    "blurb": "High-energy Buckhead sushi scene with elaborate omakase and an it-list crowd.",
+    "url": "https://umiatlanta.com",
+    "sources": [
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "chai-pani",
+    "name": "Chai Pani",
+    "neighborhood": "Decatur",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["lively", "chill"],
+    "groups": ["friends", "family", "date"],
+    "tags": ["indian", "casual", "james-beard"],
+    "blurb": "Indian street food from a James Beard 'Outstanding Restaurant' winner.",
+    "url": "https://chaipanidecatur.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "bhojanic",
+    "name": "Bhojanic",
+    "neighborhood": "Decatur",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["chill", "lively"],
+    "groups": ["family", "friends"],
+    "tags": ["indian", "casual", "vegetarian-friendly"],
+    "blurb": "Family-style Indian comfort food with strong vegetarian options.",
+    "url": "https://bhojanic.com",
+    "sources": [
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "talat-market",
+    "name": "Talat Market",
+    "neighborhood": "Summerhill",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 3,
+    "energy": ["lively"],
+    "groups": ["date", "friends"],
+    "tags": ["thai", "natural-wine", "trendy"],
+    "blurb": "Thai-inspired small plates and natural wine in Summerhill — a critical darling.",
+    "url": "https://talatmarketatl.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "mujo",
+    "name": "Mujō",
+    "neighborhood": "Westside",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 4,
+    "energy": ["bignight", "date"],
+    "groups": ["date"],
+    "tags": ["sushi", "omakase", "tasting-menu"],
+    "blurb": "Intimate Edomae omakase counter — one of the most celebrated tickets in town.",
+    "url": "https://mujoatl.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "spring",
+    "name": "Spring",
+    "neighborhood": "Marietta",
+    "area": "otp-north",
+    "type": ["eat"],
+    "price": 3,
+    "energy": ["chill", "date"],
+    "groups": ["date", "family"],
+    "tags": ["seasonal", "new-american", "marietta-square"],
+    "blurb": "Refined seasonal cooking on Marietta Square — the OTP fine-dining sleeper hit.",
+    "url": "https://springmarietta.com",
     "sources": [
       { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" },
       { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
     ]
   },
   {
-    "id": "georgia-aquarium",
-    "name": "Georgia Aquarium",
-    "neighborhood": "Downtown",
-    "area": "midtown",
-    "type": ["do"],
+    "id": "9-mile-station",
+    "name": "9 Mile Station",
+    "neighborhood": "Old Fourth Ward",
+    "area": "westside-beltline",
+    "type": ["eat"],
     "price": 3,
-    "energy": ["chill", "active"],
-    "groups": ["family", "tourists", "date"],
-    "tags": ["indoors", "kid-friendly", "tourist-classic"],
-    "blurb": "One of the world's largest aquariums - whale sharks, beluga whales, the works.",
-    "url": "https://georgiaaquarium.org",
+    "energy": ["lively", "bignight"],
+    "groups": ["friends", "date", "tourists"],
+    "tags": ["rooftop", "skyline", "italian"],
+    "blurb": "Rooftop pizza and cocktails on top of Ponce City Market with skyline views.",
+    "url": "https://poncecitymarket.com",
+    "sources": [
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "watchman-seafood",
+    "name": "Watchman's Seafood and Spirits",
+    "neighborhood": "Krog Street Market",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 3,
+    "energy": ["lively", "date"],
+    "groups": ["date", "friends"],
+    "tags": ["seafood", "oysters", "cocktails"],
+    "blurb": "Oysters, seafood, and great cocktails at Krog Street Market.",
+    "url": "https://watchmansatl.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "gunshow",
+    "name": "Gunshow",
+    "neighborhood": "Glenwood Park",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 4,
+    "energy": ["lively", "bignight"],
+    "groups": ["date", "friends"],
+    "tags": ["chef-driven", "interactive", "kevin-gillespie"],
+    "blurb": "Kevin Gillespie's dim-sum-style spot where chefs roll dishes to your table.",
+    "url": "https://gunshowatl.com",
+    "sources": [
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" },
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
+    ]
+  },
+  {
+    "id": "south-city-kitchen-midtown",
+    "name": "South City Kitchen Midtown",
+    "neighborhood": "Midtown",
+    "area": "midtown",
+    "type": ["eat"],
+    "price": 3,
+    "energy": ["lively", "date"],
+    "groups": ["date", "tourists", "family"],
+    "tags": ["southern", "brunch", "atl-classic"],
+    "blurb": "Classic Southern cooking — fried chicken, shrimp & grits — and great brunch.",
+    "url": "https://southcitykitchen.com",
     "sources": [
       { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
     ]
   },
   {
-    "id": "8arm",
-    "name": "8ARM",
-    "neighborhood": "Poncey-Highland",
-    "area": "westside-beltline",
+    "id": "empire-state-south",
+    "name": "Empire State South",
+    "neighborhood": "Midtown",
+    "area": "midtown",
     "type": ["eat"],
     "price": 3,
-    "energy": ["lively", "chill"],
-    "groups": ["date", "friends"],
-    "tags": ["natural-wine", "small-plates", "trendy"],
-    "blurb": "Natural wine bar and seasonal small plates next to Hop's Chicken.",
-    "url": "https://8armatl.com",
+    "energy": ["chill", "lively"],
+    "groups": ["date", "friends", "family"],
+    "tags": ["southern", "brunch", "patio"],
+    "blurb": "Hugh Acheson's modern Southern restaurant with a beloved patio and brunch.",
+    "url": "https://empirestatesouth.com",
+    "sources": [
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "octopus-bar",
+    "name": "Octopus Bar",
+    "neighborhood": "East Atlanta",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 3,
+    "energy": ["lively", "bignight"],
+    "groups": ["friends", "date"],
+    "tags": ["late-night", "industry", "small-plates"],
+    "blurb": "Industry favorite open late — small plates and serious cocktails after hours.",
+    "url": "https://octopusbaratl.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "home-grown",
+    "name": "Home Grown",
+    "neighborhood": "Reynoldstown",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 1,
+    "energy": ["chill", "lively"],
+    "groups": ["friends", "family"],
+    "tags": ["breakfast", "diner", "casual"],
+    "blurb": "Beloved no-frills breakfast diner — cash-only vibes and stupendous biscuits.",
+    "url": "https://homegrownga.com",
+    "sources": [
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "ria-bluebird",
+    "name": "Ria's Bluebird",
+    "neighborhood": "Grant Park",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 1,
+    "energy": ["chill"],
+    "groups": ["friends", "family"],
+    "tags": ["breakfast", "diner", "casual"],
+    "blurb": "Cash-only Grant Park breakfast institution. Worth the wait.",
+    "url": "https://riasbluebird.com",
+    "sources": [
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "buttermilk-kitchen",
+    "name": "Buttermilk Kitchen",
+    "neighborhood": "Buckhead",
+    "area": "buckhead",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["chill"],
+    "groups": ["family", "friends"],
+    "tags": ["breakfast", "brunch", "southern"],
+    "blurb": "Suzanne Vizethann's standout breakfast and brunch — fried chicken biscuits forever.",
+    "url": "https://buttermilkkitchen.com",
+    "sources": [
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "the-busy-bee",
+    "name": "Busy Bee Cafe",
+    "neighborhood": "Castleberry Hill",
+    "area": "midtown",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["chill"],
+    "groups": ["family", "friends", "tourists"],
+    "tags": ["soul-food", "southern", "atl-classic"],
+    "blurb": "Soul food legend serving fried chicken since 1947 — an Atlanta rite of passage.",
+    "url": "https://thebusybeecafe.com",
+    "sources": [
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" },
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
+    ]
+  },
+  {
+    "id": "mary-macs",
+    "name": "Mary Mac's Tea Room",
+    "neighborhood": "Midtown",
+    "area": "midtown",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["chill"],
+    "groups": ["family", "tourists"],
+    "tags": ["southern", "atl-classic", "comfort"],
+    "blurb": "Classic Southern tea room — pot likker, cornbread, and fried chicken since 1945.",
+    "url": "https://marymacs.com",
+    "sources": [
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "antico-pizza",
+    "name": "Antico Pizza Napoletana",
+    "neighborhood": "Westside",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["chill", "lively"],
+    "groups": ["family", "friends", "date"],
+    "tags": ["pizza", "italian", "casual"],
+    "blurb": "Wood-fired Neapolitan pizza eaten at communal tables. Counter-service icon.",
+    "url": "https://anticopizza.com",
     "sources": [
       { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
       { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
     ]
-  }
-]
+  },
+  {
+    "id": "varuni-napoli",
+    "name": "Varuni Napoli",
+    "neighborhood": "Morningside",
+    "area": "midtown",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["chill"],
+    "groups": ["family", "date", "friends"],
+    "tags": ["pizza", "italian", "casual"],
+    "blurb": "Authentic Neapolitan pies and a serious Italian wine list.",
+    "url": "https://varuni.us",
+    "sources": [
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "fellini-pizza",
+    "name": "Fellini's Pizza",
+    "neighborhood": "Multiple locations",
+    "area": "any",
+    "type": ["eat"],
+    "price": 1,
+    "energy": ["chill"],
+    "groups": ["friends", "family"],
+    "tags": ["pizza", "casual", "atl-classic"],
+    "blurb": "Atlanta's go-to slice joint — by the slice, late nights, and a great patio scene.",
+    "url": "https://fellinisatlanta.com",
+    "sources": [
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "holeman-finch",
+    "name": "Holeman & Finch Public House",
+    "neighborhood": "Buckhead",
+    "area": "buckhead",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["lively", "chill"],
+    "groups": ["friends", "date"],
+    "tags": ["gastropub", "burgers", "cocktails"],
+    "blurb": "Famous burger that used to drop at 10pm — now all day, still legendary.",
+    "url": "https://holeman-finch.com",
+    "sources": [
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "barcelona-wine-bar",
+    "name": "Barcelona Wine Bar",
+    "neighborhood": "Inman Park",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 3,
+    "energy": ["lively", "date"],
+    "groups": ["date", "friends"],
+    "tags": ["spanish", "tapas", "wine"],
+    "blurb": "Tapas and a deep Spanish wine list in a buzzy Inman Park space.",
+    "url": "https://barcelonawinebar.com",
+    "sources": [
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" }
+    ]
+  },
+  {
+    "id": "minero",
+    "name": "Minero",
+    "neighborhood": "Krog Street Market",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["lively", "chill"],
+    "groups": ["friends", "date", "family"],
+    "tags": ["mexican", "tacos", "tequila"],
+    "blurb": "Sean Brock's taqueria at Krog — house tortillas and an excellent tequila program.",
+    "url": "https://mineroatl.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
+    ]
+  },
+  {
+    "id": "superica",
+    "name": "Superica",
+    "neighborhood": "Krog Street Market",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["lively"],
+    "groups": ["friends", "family", "date"],
+    "tags": ["tex-mex", "margaritas", "patio"],
+    "blurb": "Ford Fry's Tex-Mex with frozen margs and a patio scene that never quits.",
+    "url": "https://superica.com",
+    "sources": [
+      { "pub": "The Infatuation", "url": "https://www.theinfatuation.com/atlanta" },
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
+    ]
+  },
+  {
+    "id": "el-valle",
+    "name": "El Valle",
+    "neighborhood": "Buford Highway",
+    "area": "any",
+    "type": ["eat"],
+    "price": 1,
+    "energy": ["chill"],
+    "groups": ["friends", "family"],
+    "tags": ["mexican", "tacos", "buford-highway"],
+    "blurb": "Tiny Buford Highway taqueria with some of the city's best tacos.",
+    "url": "https://atlanta.eater.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
+    ]
+  },
+  {
+    "id": "heirloom-market-bbq",
+    "name": "Heirloom Market BBQ",
+    "neighborhood": "Smyrna",
+    "area": "otp-north",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["chill"],
+    "groups": ["friends", "family"],
+    "tags": ["bbq", "korean", "fusion"],
+    "blurb": "Korean-Southern BBQ fusion — counter service, mind-bending kimchi side dishes.",
+    "url": "https://heirloommarketbbq.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" },
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "das-bbq",
+    "name": "DAS BBQ",
+    "neighborhood": "Westside",
+    "area": "westside-beltline",
+    "type": ["eat"],
+    "price": 2,
+    "energy": ["chill"],
+    "groups": ["friends", "family"],
+    "tags": ["bbq", "casual"],
+    "blurb": "Texas-style brisket and ribs — the connoisseur's pick for Atlanta BBQ.",
+    "url": "https://dasbbq.com",
+    "sources": [
+      { "pub": "Eater Atlanta", "url": "https://atlanta.eater.com" }
+    ]
+  },
+  {
+    "id": "this-is-it-southern-kitchen",
+    "name": "This Is It! Southern Kitchen & BBQ",
+    "neighborhood": "Decatur",
+    "area": "decatur-east",
+    "type": ["eat"],
+    "price": 1,
+    "energy": ["chill"],
+    "groups": ["family", "friends"],
+    "tags": ["soul-food", "bbq", "casual"],
+    "blurb": "No-frills soul food and BBQ that ATL locals quietly swear by.",
+    "url": "https://thisisitbbq.com",
+    "sources": [
+      { "pub": "Atlanta Magazine", "url": "https://www.atlantamagazine.com" }
+    ]
+  },
+  {
+    "id": "ticonderoga-club",
+    "name": "Ticonderoga Club",
