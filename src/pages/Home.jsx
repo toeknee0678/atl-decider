@@ -1,131 +1,92 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Quiz from "../components/Quiz";
+import Results from "../components/Results";
+import { recommendSolo } from "../lib/recommend";
+import places from "../../public/places.json";
 
 export default function Home() {
-  const nav = useNavigate();
-  const [hostName, setHostName] = useState("");
-  const [joinCode, setJoinCode] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
+  // Phases: "hero" -> "quiz" -> "results"
+  const [phase, setPhase] = useState("hero");
+  const [answers, setAnswers] = useState(null);
+  const [recommendations, setRecommendations] = useState([]);
 
-  const create = async () => {
-    if (!hostName.trim()) return;
-    setBusy(true);
-    setError("");
-    try {
-      // Step 1: create the room
-      const created = await fetch("/.netlify/functions/create-room", {
-        method: "POST",
-        body: JSON.stringify({ hostName }),
-      }).then((r) => r.json());
+  const startQuiz = () => setPhase("quiz");
 
-      if (!created.code) throw new Error(created.error || "Couldn't create room");
-
-      // Step 2: auto-join the host with the same name (so they don't enter it twice)
-      const joined = await fetch("/.netlify/functions/join-room", {
-        method: "POST",
-        body: JSON.stringify({ code: created.code, displayName: hostName }),
-      }).then((r) => r.json());
-
-      if (joined.participantId) {
-        // Stash the participant ID so Room.jsx knows who we are
-        localStorage.setItem(`me-${created.code}`, joined.participantId);
-      }
-
-      nav(`/r/${created.code}`);
-    } catch (e) {
-      setError(e.message);
-    } finally {
-      setBusy(false);
-    }
+  const handleQuizComplete = (finalAnswers) => {
+    setAnswers(finalAnswers);
+    const picks = recommendSolo(finalAnswers, places, 5);
+    setRecommendations(picks);
+    setPhase("results");
+    // Smooth scroll to top so users see the winner first
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
   };
 
-  const join = () => {
-    if (joinCode.trim().length >= 4) nav(`/r/${joinCode.trim().toUpperCase()}`);
+  const reset = () => {
+    setAnswers(null);
+    setRecommendations([]);
+    setPhase("hero");
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
   };
+
+  if (phase === "hero") {
+    return <Hero onStart={startQuiz} />;
+  }
+
+  if (phase === "quiz") {
+    return <Quiz onComplete={handleQuizComplete} />;
+  }
 
   return (
+    <Results
+      recommendations={recommendations}
+      answers={answers}
+      onRetry={reset}
+    />
+  );
+}
+
+function Hero({ onStart }) {
+  return (
     <div className="space-y-8">
-      {/* Hero */}
       <section className="bg-white rounded-2xl border p-8">
         <p className="text-xs uppercase tracking-widest opacity-60 mb-2">
-          Metro Atlanta · Group decision-maker
+          Metro Atlanta · Eat or do
         </p>
-        <h2 className="text-3xl mb-3">Can't decide where to go?</h2>
+        <h2 className="text-3xl mb-3">Where should you go tonight?</h2>
         <p className="text-stone-600 mb-6 text-lg">
-          Get your friends to answer 5 quick questions. We'll surface the spots
-          ATL critics love that fit everyone's vibe.
+          Answer 5 quick questions. We'll recommend Atlanta spots that
+          critics love and that fit what you're in the mood for.
         </p>
-
-        <div className="flex flex-col sm:flex-row gap-2">
-          <input
-            value={hostName}
-            onChange={(e) => setHostName(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && create()}
-            placeholder="Your name"
-            className="flex-1 border rounded-xl px-3 py-2"
-            autoFocus
-          />
-          <button
-            onClick={create}
-            disabled={busy || !hostName.trim()}
-            className="bg-stone-900 text-white px-4 py-2 rounded-xl disabled:opacity-50"
-          >
-            {busy ? "Starting…" : "Start a room →"}
-          </button>
-        </div>
-        {error && <p className="text-sm text-red-600 mt-2">{error}</p>}
+        <button
+          onClick={onStart}
+          className="bg-stone-900 text-white px-5 py-3 rounded-xl"
+        >
+          Find me a spot →
+        </button>
       </section>
 
-      {/* How it works */}
       <section className="grid sm:grid-cols-3 gap-3">
-        <Step n="1" title="Share the room">
-          Send your friends a 6-letter code or invite link.
-        </Step>
-        <Step n="2" title="Everyone votes">
-          Each person answers 5 quick questions about vibe, area, and budget.
-        </Step>
-        <Step n="3" title="Get a real answer">
-          We pick the spots that fit the most people, weighted by editorial picks.
-        </Step>
-      </section>
-
-      {/* Join existing */}
-      <section className="bg-white rounded-2xl border p-6">
-        <h3 className="font-semibold mb-2">Joining friends?</h3>
-        <p className="text-stone-600 text-sm mb-4">
-          Type the room code your friend shared with you.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-2">
-          <input
-            value={joinCode}
-            onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
-            onKeyDown={(e) => e.key === "Enter" && join()}
-            placeholder="ABC123"
-            maxLength={6}
-            className="flex-1 border rounded-xl px-3 py-2 font-mono tracking-widest"
-          />
-          <button
-            onClick={join}
-            disabled={joinCode.trim().length < 4}
-            className="bg-white border px-4 py-2 rounded-xl disabled:opacity-50"
-          >
-            Join room
-          </button>
-        </div>
+        <Feature title="5 questions">
+          Quick taps, no typing. Done in under a minute.
+        </Feature>
+        <Feature title="Editorially backed">
+          Picks pulled from The Infatuation, Eater Atlanta, and more.
+        </Feature>
+        <Feature title="Instant answer">
+          One recommendation, plus a few backups in case the first is closed.
+        </Feature>
       </section>
     </div>
   );
 }
 
-function Step({ n, title, children }) {
+function Feature({ title, children }) {
   return (
     <div className="bg-white rounded-2xl border p-5">
-      <div className="text-xs font-bold opacity-50 mb-1">STEP {n}</div>
       <div className="font-semibold mb-1">{title}</div>
       <p className="text-sm text-stone-600">{children}</p>
     </div>
   );
 }
 
-/* END OF FILE — last line above is "}" closing the Step component */
+/* END OF FILE — last line above is "}" closing Feature */
