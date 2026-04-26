@@ -35,4 +35,19 @@ export const questions = [
     label: "What's the vibe?",
     options: [
       { value: "chill", label: "Chill & low-key" },
-      { value: "lively", label: "L
+      { value: "lively", label: "Lively & social" },
+      { value: "bignight", label: "Big night out" },
+      { value: "active", label: "Active / outdoorsy" },
+    ],
+  },
+  {
+    key: "group",
+    label: "Who's coming?",
+    options: [
+      { value: "date", label: "Date night" },
+      { value: "friends", label: "Friends hangout" },
+      { value: "family", label: "Family with kids" },
+      { value: "tourists", label: "Showing off ATL to out-of-towners" },
+    ],
+  },
+];
