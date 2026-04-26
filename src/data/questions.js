@@ -1,3 +1,8 @@
+// src/data/questions.js
+// Question definitions for ATL Decider quiz.
+// `multi: true` indicates a multi-select question (handled in Quiz.jsx).
+// `optional: true` indicates the user can skip the question entirely.
+
 export const questions = [
   {
     key: "type",
@@ -20,7 +25,7 @@ export const questions = [
   },
   {
     key: "area",
-    label: "Where in ATL?",
+    label: "Where are you starting from?",
     options: [
       { value: "midtown", label: "Midtown" },
       { value: "buckhead", label: "Buckhead" },
@@ -28,6 +33,15 @@ export const questions = [
       { value: "decatur-east", label: "Decatur / East ATL" },
       { value: "otp-north", label: "OTP North (Sandy Springs / Alpharetta)" },
       { value: "any", label: "No preference" },
+    ],
+  },
+  {
+    key: "distance",
+    label: "How far are you willing to go?",
+    options: [
+      { value: "walking", label: "Walking or short drive (<10 min)" },
+      { value: "across-town", label: "Across town is fine (10–25 min)" },
+      { value: "anywhere", label: "Anywhere in Metro ATL (25+ min OK)" },
     ],
   },
   {
@@ -50,4 +64,18 @@ export const questions = [
       { value: "tourists", label: "Showing off ATL to out-of-towners" },
     ],
   },
+  {
+    key: "dealBreakers",
+    label: "Anything that's a must? (optional — pick any)",
+    multi: true,
+    optional: true,
+    options: [
+      { value: "outdoor", label: "Outdoor seating" },
+      { value: "vegetarian", label: "Vegetarian / vegan-friendly" },
+      { value: "reservations", label: "Reservations a must" },
+      { value: "kid-friendly", label: "Kid-friendly" },
+    ],
+  },
 ];
+
+/* END OF FILE — last line above is "];" closing the questions array */
