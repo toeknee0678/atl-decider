@@ -3,11 +3,15 @@ import { rankForUser } from "./recommend.js";
 /**
  * Borda count with per-user weights and an editorial tiebreaker.
  *
- * @param {Array} participants  [{ id, name, weight, answers }]
- * @param {Array} places        full venue dataset
+ * @param {Array} participants    [{ id, name, weight, answers }]
+ * @param {Array} places          full venue dataset
+ * @param {Object} [opts]
+ * @param {Array<string>} [opts.excludeIds]  venue IDs to skip (used by "show different options")
  * @returns {{ results: Array, consensus: object }}
  */
-export function aggregateGroup(participants, places) {
+export function aggregateGroup(participants, places, opts = {}) {
+  const exclude = new Set(opts.excludeIds || []);
+
   const scoreMap = new Map();
   const breakdown = new Map();
   const eligibleByUser = new Map();
@@ -33,6 +37,7 @@ export function aggregateGroup(participants, places) {
     [...eligibleByUser.values()].every((set) => set.has(venueId));
 
   const results = places
+    .filter((p) => !exclude.has(p.id))
     .filter((p) => passesAllFilters(p.id))
     .map((p) => ({
       venue: p,
@@ -40,7 +45,7 @@ export function aggregateGroup(participants, places) {
       breakdown: breakdown.get(p.id) || [],
     }))
     .sort((a, b) => b.groupScore - a.groupScore)
-    .slice(0, 5);
+    .slice(0, 8);
 
   const consensus = computeConsensus(participants);
   return { results, consensus };
@@ -61,3 +66,5 @@ function computeConsensus(participants) {
   }
   return out;
 }
+
+/* END OF FILE — last line above is "}" closing computeConsensus */
