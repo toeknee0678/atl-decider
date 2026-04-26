@@ -102,4 +102,23 @@ function PlaceCard({ rank, venue, groupScore, breakdown }) {
         <summary className="text-xs opacity-60 cursor-pointer">
           Why we picked this
         </summary>
-        <ul className="text-x
+        <ul className="text-xs mt-2 space-y-1">
+          {breakdown.map((b) => (
+            <li key={b.userName}>
+              {b.userName} ranked it #{b.rank} ({b.points} pts)
+            </li>
+          ))}
+        </ul>
+      </details>
+
+      <a
+        href={venue.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block mt-3 text-sm underline"
+      >
+        Visit site →
+      </a>
+    </div>
+  );
+}
